@@ -44,9 +44,7 @@ export default function Login({navigation}){
 
               
               navigation.dispatch(StackActions.pop(1));
-              navigation.dispatch(
-                StackActions.replace("Home")
-              );
+              navigation.dispatch(StackActions.replace("Home"));
             } else {
               Alert.alert("Warning","Enter correct details");
             }

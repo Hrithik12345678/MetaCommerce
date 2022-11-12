@@ -10,14 +10,18 @@ const screenWidth = Dimensions.get('window').width;
 export default function SignUp({navigation}){
 
   /* UseState and UseEffect */
-  const [Name,setName] = useState('');
-  const [Email,setEmail] = useState('');
-  const [Password,setPassword] = useState('');
-  const [Gender,setGender] = useState('');
+  const [Name,setName] = useState(null);
+  const [Email,setEmail] = useState(null);
+  const [Password,setPassword] = useState(null);
+  const [Gender,setGender] = useState(null);
 
   /* functions */
   function Auth(){
-    return true;
+    if(Name == null || Email == null || Password == null || Gender == null){
+      return false;
+    }else{
+      return true;
+    }
   }
   /* main function */
     return(
