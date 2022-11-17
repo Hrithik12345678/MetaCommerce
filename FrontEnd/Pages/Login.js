@@ -2,6 +2,7 @@
 import { StackActions } from "@react-navigation/native";
 import {React, useState, useEffect} from "react";
 import { StyleSheet, Text, View,ImageBackground,Dimensions,TextInput,Button, Alert } from 'react-native';
+import axios from "axios";
 /* Variables and fucntions */
 const screenHeight = Dimensions.get('window').height;
 const screenWidth = Dimensions.get('window').width;
@@ -10,24 +11,54 @@ const screenWidth = Dimensions.get('window').width;
 export default function Login({navigation}){
   
   /* useState and UseEffect */
-  const [Name,setName] = useState(null);
-  const [Password,setPassword] = useState(null);
+  const [Details,setDetails] = useState([]);
   
+  
+
+  // useEffect( () => {
+  //   // fetchData();
+  //   async function fetchData() {
+  //     await fetch("http://127.0.0.1:5000/login",{method:"GET",headers:{
+  //       "Content-Type":"application/json"
+  //     }})
+  //     .then(async (res) =>{
+  //      const resp = await res.json()
+  //      console.log(resp,"cheking response");
+  //     })
+  //     .then((data) => console.log(data));
+  //   }
+  //   fetchData();
+  // }, []);
+
+  useEffect(() => {
+    async function fetchData() {
+      await axios.get("http://127.0.0.1:5000/login")
+          .then((data)=>setDetails(data));
+    }
+    try{
+      fetchData();
+    }catch{
+      console.error();
+    }
+    console.log(Details);
+  })
+
   /* Functions */
   function Auth(){
-    if (Name == null || Password == null) {
-      Alert.alert('Warning','Fill your Details');
-      return false;
-    }
-    if (Name == "Meta" && Password == "Meta") {
-      return true;
-    }else if(Password != "Meta"){
-      Alert.alert('Warning','Worng Details, Check Password');
-      return false;
-    }else if(Name != "Meta"){
-      Alert.alert('Warning','Worng Details, Check Name');
-      return false;
-    }
+    // if (Name == null || Password == null) {
+    //   Alert.alert('Warning','Fill your Details');
+    //   return false;
+    // }
+    // if (Name == "Meta" && Password == "Meta") {
+    //   return true;
+    // }else if(Password != "Meta"){
+    //   Alert.alert('Warning','Worng Details, Check Password');
+    //   return false;
+    // }else if(Name != "Meta"){
+    //   Alert.alert('Warning','Worng Details, Check Name');
+    //   return false;
+    // }
+    return true;
   }
 
   /*main function*/
